@@ -1,6 +1,6 @@
 # Simple Units
 
-Simple Units is a C++20 header-only library for strongly typed units. Plenty of other units libraries already exist, but I find they are often overly complex. Their heavy use of template metaprogramming heavily impacts compile times, and causes issues with IDE features such as type deduction, autocompletion, etc. Simple Units is a much smaller and simpler in comparison, and is focused on providing a pleasant developer experience with a minimal subset of features that satisfy the majority of use cases. The API is nearly identical to the `std::chrono::duration` API, so it be immediately familiar to most C++ users.
+Simple Units is a C++20 header-only library for strongly typed units. Plenty of other units libraries already exist, but I find they are often overly complex. Their heavy use of template metaprogramming heavily impacts compile times, and causes issues with IDE features such as type deduction, autocompletion, etc. Simple Units is much smaller and simpler in comparison, and is focused on providing a pleasant developer experience with a minimal subset of features that satisfy the majority of use cases. The API is nearly identical to the `std::chrono::duration` API, so it should be immediately familiar to most C++ users.
 
 ## Example
 
