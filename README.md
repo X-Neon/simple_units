@@ -110,7 +110,7 @@ public:
 // Defines lhs_1 * lhs_2 = rhs
 #define SU_MUL(lhs_1, lhs_2, rhs)
 
-// Defines lhs_1 * lhs_2 = rhs
+// Defines lhs_1 / lhs_2 = rhs
 #define SU_DIV(lhs_1, lhs_2, rhs)
 
 // Defines lhs = rhs^(-1)
@@ -137,8 +137,8 @@ template <typename Rep, typename Scale>
 using quantity = unit<void, Rep, Scale>;
 
 constexpr quantity<int64_t, std::nano> as_nano(1'000'000'000);
-constexpr quantity<int64_t, std::nano> as_micro(1'000'000);
-constexpr quantity<int64_t, std::nano> as_milli(1'000);
+constexpr quantity<int64_t, std::micro> as_micro(1'000'000);
+constexpr quantity<int64_t, std::milli> as_milli(1'000);
 
 template <typename To, typename Tag, typename Rep, typename Scale>
 constexpr To unit_cast(const unit<Tag, Rep, Scale>& u);
