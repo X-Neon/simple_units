@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "units.hpp"
 
 // Define unit types
@@ -24,13 +25,14 @@ using kilowatt_d = su::unit<watt_t, double, std::kilo>;
 using joule = su::unit<joule_t, int64_t>;
 using megajoule_d = su::unit<joule_t, double, std::mega>;
 
-int main() {
+int main()
+{
     constexpr auto pc_power = watt(500);
     constexpr auto kettle_power = kilowatt(2);
     static_assert(kettle_power + pc_power == watt(2500));
 
     constexpr auto total_power_kw = su::unit_cast<kilowatt_d>(kettle_power + pc_power);
-    std::cout << total_power_kw << std::endl; // 2.5kW
+    std::cout << total_power_kw << std::endl;  // 2.5kW
 
     constexpr int64_t power_ratio = kettle_power / pc_power;
     static_assert(power_ratio == 4);

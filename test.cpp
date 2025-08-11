@@ -20,7 +20,8 @@ using watt = su::unit<watt_t, Rep, Scale>;
 template <typename Rep, typename Scale = std::ratio<1>>
 using joule = su::unit<joule_t, Rep, Scale>;
 
-int main() {
+int main()
+{
     static_assert(second<int64_t>(5).count() == 5);
     static_assert(second<int64_t>(5).value() == 5);
 
@@ -36,7 +37,7 @@ int main() {
     static_assert(second<int64_t>(1) / second<int64_t>(2) == 0);
     static_assert(second<double>(1) / second<int64_t>(2) == 0.5);
     static_assert(second<int64_t, std::kilo>(1) / second<int64_t>(2) == 500);
-    
+
     static_assert(second<int64_t>(6) / 3 == second<int64_t>(2));
     static_assert(second<int64_t>(3) * 2 == second<int64_t>(6));
     static_assert(second<int64_t>(3) + second<int64_t>(2) == second<int64_t>(5));
