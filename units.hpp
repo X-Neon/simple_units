@@ -150,6 +150,40 @@ namespace su
         return To((v * R::den) / R::num);
     }
 
+    template <typename To, typename Tag, typename Rep, typename Scale>
+    requires std::same_as<typename To::tag, Tag>
+    constexpr To floor(const unit<Tag, Rep, Scale>& u)
+    {
+        To t = unit_cast<To>(u);
+        return (t > u) ? t - To{1} : t;
+    }
+
+    template <typename To, typename Tag, typename Rep, typename Scale>
+    requires std::same_as<typename To::tag, Tag>
+    constexpr To ceil(const unit<Tag, Rep, Scale>& u)
+    {
+        To t = unit_cast<To>(u);
+        return (t < u) ? t + To{1} : t;
+    }
+
+    template <typename To, typename Tag, typename Rep, typename Scale>
+    requires std::same_as<typename To::tag, Tag> && (!treat_as_floating_point<typename To::rep>::value)
+    constexpr To round(const unit<Tag, Rep, Scale>& u)
+    {
+        To lo = floor<To>(u);
+        To hi = lo + To{1};
+        auto lo_diff = u - lo;
+        auto hi_diff = hi - u;
+
+        if (lo_diff == hi_diff) {
+            return (lo.count() & 1) ? hi : lo;
+        } else if (lo_diff < hi_diff) {
+            return lo;
+        } else {
+            return hi;
+        }
+    }
+
     namespace ops
     {
         template <typename T, typename U>

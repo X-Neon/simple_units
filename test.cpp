@@ -63,4 +63,12 @@ int main()
     static_assert(second<int64_t>(5) == second<int64_t>(std::chrono::seconds(5)));
     static_assert(std::chrono::seconds(second<int64_t, std::kilo>(5)) == std::chrono::seconds(5000));
     static_assert(second<int64_t, std::kilo>(5) == second<int64_t>(std::chrono::seconds(5000)));
+
+    static_assert(su::floor<second<int64_t, std::kilo>>(second<int64_t>(1100)) == second<int64_t, std::kilo>(1));
+    static_assert(su::ceil<second<int64_t, std::kilo>>(second<int64_t>(1100)) == second<int64_t, std::kilo>(2));
+
+    static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(1100)) == second<int64_t, std::kilo>(1));
+    static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(1600)) == second<int64_t, std::kilo>(2));
+    static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(1500)) == second<int64_t, std::kilo>(2));
+    static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(2500)) == second<int64_t, std::kilo>(2));
 }
