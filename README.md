@@ -142,6 +142,15 @@ constexpr quantity<int64_t, std::milli> as_milli(1'000);
 
 template <typename To, typename Tag, typename Rep, typename Scale>
 constexpr To unit_cast(const unit<Tag, Rep, Scale>& u);
+
+template <typename To, typename Tag, typename Rep, typename Scale>
+constexpr To floor(const unit<Tag, Rep, Scale>& u);
+
+template <typename To, typename Tag, typename Rep, typename Scale>
+constexpr To ceil(const unit<Tag, Rep, Scale>& u);
+
+template <typename To, typename Tag, typename Rep, typename Scale>
+constexpr To round(const unit<Tag, Rep, Scale>& u);
 ```
 
 ### Operators
