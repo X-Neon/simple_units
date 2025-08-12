@@ -73,6 +73,8 @@ namespace su
 
         constexpr unit() = default;
         unit(const unit&) = default;
+        unit& operator=(const unit&) = default;
+        ~unit() = default;
 
         template <typename Rep2>
         requires treat_as_floating_point<Rep>::value || (!treat_as_floating_point<Rep2>::value)
