@@ -3,6 +3,7 @@
 #include <chrono>
 #include <concepts>
 #include <limits>
+#include <numeric>
 #include <ostream>
 #include <ratio>
 
@@ -324,23 +325,6 @@ namespace su
         s << Tag::symbol;
         return s;
     }
-
-    namespace detail
-    {
-        constexpr intmax_t abs(intmax_t a) { return a < 0 ? -a : a; }
-
-        constexpr intmax_t gcd(intmax_t a, intmax_t b)
-        {
-            if (b == 0) {
-                return abs(a);
-            } else if (a == 0) {
-                return abs(b);
-            } else {
-                return gcd(b, a % b);
-            }
-        }
-
-    }
 }
 
 namespace std
@@ -354,8 +338,7 @@ namespace std
     template <typename Tag, typename Rep1, typename Scale1, typename Rep2, typename Scale2>
     struct common_type<su::unit<Tag, Rep1, Scale1>, su::unit<Tag, Rep2, Scale2>>
     {
-        using Scale = ratio<su::detail::gcd(Scale1::num, Scale2::num),
-                            (Scale1::den / su::detail::gcd(Scale1::den, Scale2::den)) * Scale2::den>;
+        using Scale = ratio<gcd(Scale1::num, Scale2::num), (Scale1::den / gcd(Scale1::den, Scale2::den)) * Scale2::den>;
         using Rep = common_type_t<Rep1, Rep2>;
         using type = su::unit<Tag, Rep, Scale>;
     };
