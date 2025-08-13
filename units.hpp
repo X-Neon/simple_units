@@ -157,7 +157,19 @@ namespace su
     constexpr quantity<int64_t, std::micro> as_micro(1'000'000);
     constexpr quantity<int64_t, std::milli> as_milli(1'000);
 
-    template <typename To, typename Tag, typename Rep, typename Scale>
+    namespace detail
+    {
+        template <typename>
+        inline constexpr bool is_unit_type_v = false;
+
+        template <typename Tag, typename Rep, typename Scale>
+        inline constexpr bool is_unit_type_v<unit<Tag, Rep, Scale>> = true;
+
+        template <typename T>
+        concept unit_type = is_unit_type_v<T>;
+    }
+
+    template <detail::unit_type To, typename Tag, typename Rep, typename Scale>
     requires std::same_as<typename To::tag, Tag>
     constexpr To unit_cast(const unit<Tag, Rep, Scale>& u)
     {
@@ -166,7 +178,7 @@ namespace su
         return To((v * R::den) / R::num);
     }
 
-    template <typename To, typename Tag, typename Rep, typename Scale>
+    template <detail::unit_type To, typename Tag, typename Rep, typename Scale>
     requires std::same_as<typename To::tag, Tag>
     constexpr To floor(const unit<Tag, Rep, Scale>& u)
     {
@@ -174,7 +186,7 @@ namespace su
         return (t > u) ? t - To{1} : t;
     }
 
-    template <typename To, typename Tag, typename Rep, typename Scale>
+    template <detail::unit_type To, typename Tag, typename Rep, typename Scale>
     requires std::same_as<typename To::tag, Tag>
     constexpr To ceil(const unit<Tag, Rep, Scale>& u)
     {
@@ -182,7 +194,7 @@ namespace su
         return (t < u) ? t + To{1} : t;
     }
 
-    template <typename To, typename Tag, typename Rep, typename Scale>
+    template <detail::unit_type To, typename Tag, typename Rep, typename Scale>
     requires std::same_as<typename To::tag, Tag> && (!treat_as_floating_point<typename To::rep>::value)
     constexpr To round(const unit<Tag, Rep, Scale>& u)
     {
