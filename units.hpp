@@ -102,6 +102,22 @@ namespace su
         constexpr unit operator+() const { return *this; }
         constexpr unit operator-() const { return unit(-m_val); }
 
+        constexpr unit& operator++()
+        {
+            ++m_val;
+            return *this;
+        }
+
+        constexpr unit operator++(int) { return unit(m_val++); }
+
+        constexpr unit& operator--()
+        {
+            --m_val;
+            return *this;
+        }
+
+        constexpr unit operator--(int) { return unit(m_val--); }
+
         constexpr unit& operator+=(const unit& u) { m_val += u.m_val; }
         constexpr unit& operator-=(const unit& u) { m_val -= u.m_val; }
         constexpr unit& operator*=(const Rep& v) { m_val *= v; }
