@@ -212,6 +212,13 @@ namespace su
         }
     }
 
+    template <typename Tag, typename Rep, typename Scale>
+    requires std::numeric_limits<Rep>::is_signed
+    constexpr unit<Tag, Rep, Scale> abs(const unit<Tag, Rep, Scale>& u)
+    {
+        return u >= u.zero() ? +u : -u;
+    }
+
     namespace ops
     {
         template <typename T, typename U>

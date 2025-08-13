@@ -72,6 +72,9 @@ int main()
     static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(1500)) == second<int64_t, std::kilo>(2));
     static_assert(su::round<second<int64_t, std::kilo>>(second<int64_t>(2500)) == second<int64_t, std::kilo>(2));
 
+    static_assert(su::abs(second<int64_t>(4)) == second<int64_t>(4));
+    static_assert(su::abs(second<int64_t>(-4)) == second<int64_t>(4));
+
     static_assert(su::unit_cast<second<int64_t, std::kilo>>(second<int64_t>(2000)).count() == 2);
     static_assert(su::unit_cast<second<int64_t, std::kilo>>(second<int64_t>(2100)).count() == 2);
     static_assert(su::unit_cast<second<int64_t, std::kilo>>(second<int64_t>(2999)).count() == 2);
