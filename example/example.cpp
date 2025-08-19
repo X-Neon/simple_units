@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "units.hpp"
+#include "simple_units/unit.hpp"
 
 // Define unit types
 SU_DURATION_UNIT(second_t, "s")

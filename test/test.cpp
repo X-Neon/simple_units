@@ -1,4 +1,4 @@
-#include "units.hpp"
+#include "simple_units/unit.hpp"
 
 SU_DURATION_UNIT(second_t, "s")
 SU_UNIT(hz_t, "Hz")
