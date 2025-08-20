@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 4.0)
 
-project(simple_units VERSION 1.0 LANGUAGES CXX)
+project(simple_units VERSION 1.0.0 LANGUAGES CXX)
 
 add_library(simple_units INTERFACE)
 target_compile_features(simple_units INTERFACE cxx_std_20)
